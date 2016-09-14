@@ -1,0 +1,24 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>Cats</title>
+</head>
+<body>
+<div id="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+         <h2>Cats</h2>
+      </div>
+    </div>
+    <div class="panel-body">
+    <ul>
+        <% for (var x in cats) { %>
+        <li>Name: <a href="<%= cats[x].id %>"><%= cats[x].name %></a>, Age: <%= cats[x].age %>, Size: <%= cats[x].size %></li>
+        <% } %>
+    </ul>
+    </div>
+    <button class="btn btn-default"><a href="/new">Add a Cat</a></button>
+</div>
+</body>
+</html>
