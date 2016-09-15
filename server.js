@@ -13,7 +13,7 @@ app.set('view engine', 'ejs');
 mongoose.connect('mongodb://localhost/cat_db');
 
 var CatSchema = new mongoose.Schema({
- name: String,
+ name: { type: String, required: true, minlength: 3 },
  age: Number,
  size: String
 });
@@ -34,13 +34,14 @@ app.get('/new', function(req, res){
 	res.render('new')
 })
 app.post('/', function(req, res){
-	Cat.create(req.body, function(err, results){
+	var cat = new Cat(req.body);
+	cat.save(function(err){
 		if (err){
-			console.log(err);
+			res.render('new', {title: 'you have errors!', errors: cat.errors})
 		} else {
 			res.redirect('/')
 		}
-	});
+	})
 });
 app.get('/:id', function(req, res){
 	Cat.find({ _id: req.params.id }, function(err, cat){

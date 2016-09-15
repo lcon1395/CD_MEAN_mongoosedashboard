@@ -13,6 +13,11 @@
       </div>
     </div>
     <div class="panel-body">
+     <% if(typeof(errors) != 'undefined' ) { %>
+        <% for (var x in errors) { %>
+         <div class="alert alert-danger" role="alert"> <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> <%= errors[x].message %></div>
+         <% } %>
+      <% } %>
     <form action="/" method="post">
       
         <p>
